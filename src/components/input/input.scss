@@ -1,0 +1,12 @@
+.input {
+  margin: 20px;
+  border: 1px solid #af4c4c;
+  .inputBoxes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .inputButton {
+    width: 75px;
+  }
+}

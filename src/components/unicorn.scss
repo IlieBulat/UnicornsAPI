@@ -1,4 +1,16 @@
 .box {
   margin: 20px;
   border: 1px solid #4caf50;
+  display: flex;
+  justify-content: space-around;
+  .uniName {
+    font-weight: bold;
+    font-size: 25px;
+  }
+  .uniAge {
+    font-size: 20px;
+  }
+  .uniColour {
+    text-shadow: 1px 1px #000000;
+  }
 }
