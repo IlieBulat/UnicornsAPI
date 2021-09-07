@@ -2,12 +2,12 @@ import React from "react";
 
 import "./App.css";
 import Content from "./components/Content";
-import Input from "./components/input/Input";
+import DataInput from "./components/input/DataInput";
 
 function App() {
   return (
     <div className="App">
-      <Input />
+      <DataInput />
       <Content />
     </div>
   );
