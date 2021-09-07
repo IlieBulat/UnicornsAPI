@@ -1,19 +1,21 @@
 import React from "react";
-import "./unicorn.scss";
+import "./styles.scss";
 
-export default function Unicorn({ data }) {
-  let id = data._id;
-  function deleteItem() {
+const UnicornList = ({ data }) => {
+  const deleteUnicorn = () => {
     fetch(
       "https://crudcrud.com/api/d3f0a69747e6453d8422fa226bfe2ba0/unicorns/" +
-        id,
+        data._id,
       {
         method: "DELETE",
       }
     )
       .then((res) => res.text())
-      .then((res) => console.log(res));
-  }
+      .then((res) => console.log(res))
+      .catch((error) => {
+        console.error("Trying to delete a Unicorn, Error:", error);
+      });
+  };
   return (
     <React.Fragment>
       <tbody>
@@ -28,10 +30,13 @@ export default function Unicorn({ data }) {
             <div className="uniColour">Color: {data.colour}</div>
           </td>
           <td>
-            <button onClick={deleteItem}>Delete</button>
+            <button>Edit</button>
+            <button onClick={deleteUnicorn}>Delete</button>
           </td>
         </tr>
       </tbody>
     </React.Fragment>
   );
-}
+};
+
+export default UnicornList;

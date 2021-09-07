@@ -1,14 +1,14 @@
 import React from "react";
 
 import "./App.css";
-import Call from "./components/call";
-import Input from "./components/input/input";
+import Content from "./components/Content";
+import Input from "./components/input/Input";
 
 function App() {
   return (
     <div className="App">
       <Input />
-      <Call />
+      <Content />
     </div>
   );
 }
