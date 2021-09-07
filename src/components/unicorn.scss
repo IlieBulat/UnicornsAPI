@@ -6,11 +6,20 @@
   .uniName {
     font-weight: bold;
     font-size: 25px;
+    flex-grow: 7;
   }
   .uniAge {
     font-size: 20px;
+    flex-grow: 2;
   }
   .uniColour {
-    text-shadow: 1px 1px #000000;
+    // text-shadow: 1px 1px #000000;
+    flex-grow: 1;
   }
+}
+
+.contentTable {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }

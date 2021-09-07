@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Unicorn from "./unicorn";
+import "./unicorn.scss";
 
 export default function Call() {
   const [unicorns, setUnicorns] = useState([]);
 
   useEffect(() => {
-    fetch("https://crudcrud.com/api/5355f94856914d71a0f289d491d693ab/unicorns")
+    fetch("https://crudcrud.com/api/d3f0a69747e6453d8422fa226bfe2ba0/unicorns")
       .then((response) => response.json())
       .then((data) => setUnicorns(data));
   }, []);
   return (
     <div>
-      {unicorns.map((uni) => {
-        return <Unicorn data={uni} key={uni._id} />;
-      })}
+      <table className="contentTable">
+        {unicorns.map((uni) => {
+          return <Unicorn data={uni} key={uni._id} />;
+        })}
+      </table>
     </div>
   );
 }
