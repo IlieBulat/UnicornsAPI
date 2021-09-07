@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 
 import "./input.scss";
 import colors from "./colors";
@@ -83,11 +84,19 @@ const DataInput = () => {
       });
   };
 
+  const classes = useStyles();
+
   return (
     <div className="input">
       <form className="inputBoxes" action="#">
         <div>
           <TextField
+            InputProps={{
+              className: "Input__",
+            }}
+            InputLabelProps={{
+              className: "InputAfter__",
+            }}
             error={!valid.name}
             type="text"
             label="Name"
@@ -100,6 +109,13 @@ const DataInput = () => {
         </div>
         <div>
           <TextField
+            classes={classes}
+            InputProps={{
+              className: "Input__",
+            }}
+            InputLabelProps={{
+              className: "InputAfter__",
+            }}
             error={!valid.age}
             type="number"
             label="Age"
@@ -110,22 +126,24 @@ const DataInput = () => {
             required
           />
         </div>
-        <div>
-          <Autocomplete
-            options={colors}
-            style={{ width: 300 }}
-            autoSelect={true}
-            onChange={(event, value) => setNewUni({ ...newUni, colour: value })}
-            renderInput={(params) => (
-              <TextField
-                label="Color"
-                {...params}
-                variant="outlined"
-                required
-              />
-            )}
-          />
-        </div>
+        <Autocomplete
+          disableClearable
+          forcePopupIcon={false}
+          classes={classes}
+          options={colors}
+          style={{ width: 300 }}
+          autoSelect={true}
+          onChange={(event, value) => setNewUni({ ...newUni, colour: value })}
+          renderInput={(params) => (
+            <TextField
+              error={!valid.colour}
+              label="Color"
+              {...params}
+              variant="outlined"
+              required
+            />
+          )}
+        />
         <Button
           disabled={buttonState}
           onClick={createUni}
@@ -138,5 +156,11 @@ const DataInput = () => {
     </div>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  input: {
+    color: "white",
+  },
+}));
 
 export default DataInput;
