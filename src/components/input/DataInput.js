@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-
 import "./input.scss";
 import colors from "./colors";
+
+import { postData } from "../apiControl/apiControl";
 
 const pattern = new RegExp(/^[a-zA-Z]+$/);
 
@@ -69,26 +66,6 @@ const DataInput = () => {
     setButtonState(result);
   }, [valid]);
 
-  const createUni = () => {
-    fetch(
-      "https://crudcrud.com/api/ab4923116b8c44179364ab0d7e5a1f7a/unicorns",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUni),
-      }
-    )
-      .then((response) => response.json())
-      .then((newUni) => {
-        console.log("Success:", newUni);
-      })
-      .catch((error) => {
-        console.error("Trying to POST a new unicorn, Error:", error);
-      });
-  };
-
   return (
     <div className="input">
       <form className="inputBoxes" action="#">
@@ -131,14 +108,13 @@ const DataInput = () => {
             required
           />
         </div>
-        <Button
+        <button
           disabled={buttonState}
-          onClick={createUni}
-          className="inputButton"
-          variant="outlined"
+          onClick={() => postData(newUni)}
+          className={buttonState ? "buttonWrongInput" : "buttonCorectInput"}
         >
           ADD
-        </Button>
+        </button>
       </form>
     </div>
   );
