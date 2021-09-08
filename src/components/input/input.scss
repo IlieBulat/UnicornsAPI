@@ -7,12 +7,11 @@
     justify-content: space-around;
     align-items: center;
 
-    .Input__ {
-      color: white !important;
+    .corectInput {
+      color: green;
     }
-
-    .InputAfter__ {
-      color: white !important;
+    .wrongInput {
+      color: red;
     }
   }
   .inputButton {

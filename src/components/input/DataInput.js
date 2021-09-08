@@ -47,7 +47,15 @@ const DataInput = () => {
 
   // Color Validation
   useEffect(() => {
-    if (newUni.colour.length <= 2) {
+    const colorSearch = colors.filter((data) =>
+      data.toLowerCase().includes(newUni.colour.trim().toLowerCase())
+    );
+    const verify = (element) =>
+      element.toLowerCase() === newUni.colour.trim().toLowerCase();
+
+    let searchResult = Object.values(colorSearch).some(verify); //true or false
+
+    if (!searchResult) {
       setValid({ ...valid, colour: false });
     } else {
       setValid({ ...valid, colour: true });
@@ -58,7 +66,6 @@ const DataInput = () => {
   useEffect(() => {
     const verify = (element) => element === false;
     let result = Object.values(valid).some(verify);
-
     setButtonState(result);
   }, [valid]);
 
@@ -82,20 +89,13 @@ const DataInput = () => {
       });
   };
 
-  const classes = useStyles();
-
   return (
     <div className="input">
       <form className="inputBoxes" action="#">
         <div>
-          <TextField
-            InputProps={{
-              className: "Input__",
-            }}
-            InputLabelProps={{
-              className: "InputAfter__",
-            }}
-            error={!valid.name}
+          Name:
+          <input
+            className={valid.name ? "corectInput" : "wrongInput"}
             type="text"
             label="Name"
             variant="outlined"
@@ -107,15 +107,9 @@ const DataInput = () => {
           />
         </div>
         <div>
-          <TextField
-            classes={classes}
-            InputProps={{
-              className: "Input__",
-            }}
-            InputLabelProps={{
-              className: "InputAfter__",
-            }}
-            error={!valid.age}
+          Age:
+          <input
+            className={valid.age ? "corectInput" : "wrongInput"}
             type="number"
             label="Age"
             variant="outlined"
@@ -125,23 +119,18 @@ const DataInput = () => {
             required
           />
         </div>
-        <Autocomplete
-          disableClearable
-          classes={classes}
-          options={colors}
-          style={{ width: 300 }}
-          autoSelect={true}
-          onChange={(event, value) => setNewUni({ ...newUni, colour: value })}
-          renderInput={(params) => (
-            <TextField
-              error={!valid.colour}
-              label="Color"
-              {...params}
-              variant="outlined"
-              required
-            />
-          )}
-        />
+        <div>
+          Color:
+          <input
+            onChange={(text) =>
+              setNewUni({ ...newUni, colour: text.target.value })
+            }
+            className={valid.colour ? "corectInput" : "wrongInput"}
+            label="Color"
+            variant="outlined"
+            required
+          />
+        </div>
         <Button
           disabled={buttonState}
           onClick={createUni}
@@ -154,13 +143,5 @@ const DataInput = () => {
     </div>
   );
 };
-
-const useStyles = makeStyles(() => ({
-  root: {
-    "& .MuiAutocomplete-input:first-child": {
-      color: "white",
-    },
-  },
-}));
 
 export default DataInput;

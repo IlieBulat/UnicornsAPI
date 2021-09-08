@@ -17,13 +17,14 @@ const Content = () => {
   return (
     <div>
       <table className="contentTable">
-        {/* //Thader */}
-        <tr className="contentTitles">
-          <td>Name</td>
-          <td>Age</td>
-          <td>Color</td>
-          <td>Options</td>
-        </tr>
+        <thead>
+          <tr className="contentTitles">
+            <td>Name</td>
+            <td>Age</td>
+            <td>Color</td>
+            <td>Options</td>
+          </tr>
+        </thead>
         <tbody>
           {unicorns.map((uni) => {
             return <UnicornList data={uni} key={uni._id} />;
