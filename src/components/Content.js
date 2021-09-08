@@ -6,7 +6,7 @@ const Content = () => {
   const [unicorns, setUnicorns] = useState([]);
 
   useEffect(() => {
-    fetch("https://crudcrud.com/api/d3f0a69747e6453d8422fa226bfe2ba0/unicorns")
+    fetch("https://crudcrud.com/api/ab4923116b8c44179364ab0d7e5a1f7a/unicorns")
       .then((response) => response.json())
       .then((data) => setUnicorns(data))
       .catch((error) => {
@@ -17,17 +17,18 @@ const Content = () => {
   return (
     <div>
       <table className="contentTable">
+        {/* //Thader */}
+        <tr className="contentTitles">
+          <td>Name</td>
+          <td>Age</td>
+          <td>Color</td>
+          <td>Options</td>
+        </tr>
         <tbody>
-          <tr className="contentTitles">
-            <td>Name</td>
-            <td>Age</td>
-            <td>Color</td>
-            <td>Options</td>
-          </tr>
+          {unicorns.map((uni) => {
+            return <UnicornList data={uni} key={uni._id} />;
+          })}
         </tbody>
-        {unicorns.map((uni) => {
-          return <UnicornList data={uni} key={uni._id} />;
-        })}
       </table>
     </div>
   );

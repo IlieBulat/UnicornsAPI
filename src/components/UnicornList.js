@@ -4,7 +4,7 @@ import "./styles.scss";
 const UnicornList = ({ data }) => {
   const deleteUnicorn = () => {
     fetch(
-      "https://crudcrud.com/api/d3f0a69747e6453d8422fa226bfe2ba0/unicorns/" +
+      "https://crudcrud.com/api/ab4923116b8c44179364ab0d7e5a1f7a/unicorns/" +
         data._id,
       {
         method: "DELETE",
@@ -17,25 +17,21 @@ const UnicornList = ({ data }) => {
       });
   };
   return (
-    <React.Fragment>
-      <tbody>
-        <tr>
-          <td>
-            <div className="uniName">{data.name}</div>
-          </td>
-          <td>
-            <div className="uniAge">Age: {data.age}</div>
-          </td>
-          <td>
-            <div className="uniColour">Color: {data.colour}</div>
-          </td>
-          <td>
-            <button>Edit</button>
-            <button onClick={deleteUnicorn}>Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </React.Fragment>
+    <tr>
+      <td>
+        <div className="uniName">{data.name}</div>
+      </td>
+      <td>
+        <div className="uniAge">Age: {data.age}</div>
+      </td>
+      <td>
+        <div className="uniColour">Color: {data.colour}</div>
+      </td>
+      <td>
+        <button>Edit</button>
+        <button onClick={deleteUnicorn}>Delete</button>
+      </td>
+    </tr>
   );
 };
 

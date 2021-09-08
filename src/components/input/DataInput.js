@@ -7,6 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./input.scss";
 import colors from "./colors";
 
+const pattern = new RegExp(/^[a-zA-Z]+$/);
+
 const DataInput = () => {
   const [newUni, setNewUni] = useState({
     name: "",
@@ -14,6 +16,7 @@ const DataInput = () => {
     age: "",
   });
 
+  //Button disabler
   const [buttonState, setButtonState] = useState(true);
 
   //Validation
@@ -22,7 +25,6 @@ const DataInput = () => {
     age: false,
     colour: false,
   });
-  let pattern = new RegExp(/^[a-zA-Z]+$/);
 
   //Name validation
   useEffect(() => {
@@ -57,16 +59,12 @@ const DataInput = () => {
     const verify = (element) => element === false;
     let result = Object.values(valid).some(verify);
 
-    if (!result) {
-      setButtonState(false);
-    } else {
-      setButtonState(true);
-    }
+    setButtonState(result);
   }, [valid]);
 
   const createUni = () => {
     fetch(
-      "https://crudcrud.com/api/d3f0a69747e6453d8422fa226bfe2ba0/unicorns",
+      "https://crudcrud.com/api/ab4923116b8c44179364ab0d7e5a1f7a/unicorns",
       {
         method: "POST",
         headers: {
@@ -101,8 +99,9 @@ const DataInput = () => {
             type="text"
             label="Name"
             variant="outlined"
-            onChange={(text) =>
-              setNewUni({ ...newUni, name: text.target.value })
+            onChange={
+              (text) => setNewUni({ ...newUni, name: text.target.value })
+              //Validation useEffenct aici
             }
             required
           />
@@ -128,7 +127,6 @@ const DataInput = () => {
         </div>
         <Autocomplete
           disableClearable
-          forcePopupIcon={false}
           classes={classes}
           options={colors}
           style={{ width: 300 }}
@@ -157,9 +155,11 @@ const DataInput = () => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    color: "white",
+const useStyles = makeStyles(() => ({
+  root: {
+    "& .MuiAutocomplete-input:first-child": {
+      color: "white",
+    },
   },
 }));
 
