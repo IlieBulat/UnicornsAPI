@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./input.scss";
-import colors from "./colors";
 
-import { postData } from "../apiControl/apiControl";
+import { postData } from "../../apiControl/apiControl";
 
 const pattern = new RegExp(/^[a-zA-Z]+$/);
 
@@ -13,96 +12,84 @@ const DataInput = () => {
     age: "",
   });
 
-  //Button disabler
   const [buttonState, setButtonState] = useState(true);
 
-  //Validation
   const [valid, setValid] = useState({
     name: false,
     age: false,
     colour: false,
   });
 
-  //Name validation
-  useEffect(() => {
-    let nameResult = pattern.test(newUni.name);
-    if (!nameResult || newUni.name.length < 2) {
+  const nameCheck = (name) => {
+    let nameResult = pattern.test(name);
+    if (!nameResult || name.length < 2) {
       setValid({ ...valid, name: false });
     } else {
       setValid({ ...valid, name: true });
+      setNewUni({ ...newUni, name: name });
     }
-  }, [newUni.name]);
+  };
 
-  //Age validation
-  useEffect(() => {
-    if (newUni.age > 20 || newUni.age < 0) {
+  const ageCheck = (age) => {
+    if (age < 0 || age === "") {
       setValid({ ...valid, age: false });
     } else {
       setValid({ ...valid, age: true });
+      setNewUni({ ...newUni, age: age });
     }
-  }, [newUni.age]);
+  };
 
-  // Color Validation
-  useEffect(() => {
-    const colorSearch = colors.filter((data) =>
-      data.toLowerCase().includes(newUni.colour.trim().toLowerCase())
-    );
-    const verify = (element) =>
-      element.toLowerCase() === newUni.colour.trim().toLowerCase();
+  const isColor = (strColor) => {
+    const s = new Option().style;
+    s.color = strColor;
+    return s.color !== "";
+  };
 
-    let searchResult = Object.values(colorSearch).some(verify); //true or false
-
-    if (!searchResult) {
-      setValid({ ...valid, colour: false });
-    } else {
+  const colorCheck = (color) => {
+    if (isColor(color)) {
+      setNewUni({ ...newUni, colour: color });
       setValid({ ...valid, colour: true });
+    } else {
+      setValid({ ...valid, colour: false });
     }
-  }, [newUni.colour]);
+  };
 
-  //Enabling and disabling the ADD button
   useEffect(() => {
-    const verify = (element) => element === false;
-    let result = Object.values(valid).some(verify);
+    const buttonVerify = (element) => element === false;
+    let result = Object.values(valid).some(buttonVerify);
     setButtonState(result);
   }, [valid]);
 
   return (
     <div className="input">
-      <form className="inputBoxes" action="#">
+      <div className="inputBoxes">
         <div>
           Name:
           <input
-            className={valid.name ? "corectInput" : "wrongInput"}
+            className={valid.name ? "corect" : "wrong"}
             type="text"
             label="Name"
             variant="outlined"
-            onChange={
-              (text) => setNewUni({ ...newUni, name: text.target.value })
-              //Validation useEffenct aici
-            }
+            onChange={(text) => nameCheck(text.target.value)}
             required
           />
         </div>
         <div>
           Age:
           <input
-            className={valid.age ? "corectInput" : "wrongInput"}
+            className={valid.age ? "corect" : "wrong"}
             type="number"
             label="Age"
             variant="outlined"
-            onChange={(text) =>
-              setNewUni({ ...newUni, age: text.target.value })
-            }
+            onChange={(text) => ageCheck(text.target.value)}
             required
           />
         </div>
         <div>
           Color:
           <input
-            onChange={(text) =>
-              setNewUni({ ...newUni, colour: text.target.value })
-            }
-            className={valid.colour ? "corectInput" : "wrongInput"}
+            onChange={(text) => colorCheck(text.target.value)}
+            className={isColor(newUni.colour) ? "corect" : "wrong"}
             label="Color"
             variant="outlined"
             required
@@ -110,12 +97,15 @@ const DataInput = () => {
         </div>
         <button
           disabled={buttonState}
-          onClick={() => postData(newUni)}
-          className={buttonState ? "buttonWrongInput" : "buttonCorectInput"}
+          onClick={() => {
+            postData(newUni);
+            // changeTrig(!test);
+          }}
+          className={buttonState ? "wrongInput" : "corectInput"}
         >
           ADD
         </button>
-      </form>
+      </div>
     </div>
   );
 };

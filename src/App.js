@@ -5,7 +5,7 @@ import Content from "./components/Content";
 import DataInput from "./components/input/DataInput";
 
 import { Provider } from "react-redux";
-import store from "./components/store/store";
+import store from "./store/configStore";
 
 function App() {
   return (

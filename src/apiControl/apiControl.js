@@ -1,14 +1,15 @@
-const key = "2ff81dbb090b46ad98df932c84944557";
+const key = "849c48dd89654bb6aa726af2e7c5685b";
 const url = "https://crudcrud.com/api/";
+const link = url + key + "/unicorns/";
 
 const getData = async () => {
-  return await fetch(url + key + "/unicorns").then((response) => {
+  return await fetch(link).then((response) => {
     return response.json();
   });
 };
 
 export const postData = (data) => {
-  fetch(url + key + "/unicorns", {
+  fetch(link, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +26,7 @@ export const postData = (data) => {
 };
 
 export const deleteData = (id) => {
-  fetch(url + key + "/unicorns/" + id, {
+  fetch(link + id, {
     method: "DELETE",
   })
     .then((res) => res.text())
@@ -35,6 +36,6 @@ export const deleteData = (id) => {
 };
 
 export const editData = () => {
-  return fetch(url + key + "/unicorns").then((response) => response.json());
+  console.log("EDIT");
 };
 export default getData;

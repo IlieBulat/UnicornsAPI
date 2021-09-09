@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
 
-import { deleteData } from "./apiControl/apiControl";
+import { deleteData } from "../apiControl/apiControl";
 
 const UnicornList = ({ data }) => {
   return (
