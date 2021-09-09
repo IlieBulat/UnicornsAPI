@@ -1,11 +1,15 @@
-const key = "849c48dd89654bb6aa726af2e7c5685b";
+import axios from "axios";
+
+const key = "df8eb0b9afe9404985dd82b013044603";
 const url = "https://crudcrud.com/api/";
 const link = url + key + "/unicorns/";
 
-const getData = async () => {
-  return await fetch(link).then((response) => {
-    return response.json();
-  });
+const getData = () => {
+  const unicornsData = axios.get(link);
+  return unicornsData.data;
+  // return fetch(link).then((response) => {
+  //   return response.json();
+  // });
 };
 
 export const postData = (data) => {

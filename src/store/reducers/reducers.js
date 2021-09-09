@@ -1,6 +1,6 @@
 const initialState = {
   trigger: true,
-  unicorns: "tipa unicorni",
+  unicorns: [{ name: "Loading...", age: "Loading...", colour: "Loading..." }],
 };
 
 export function generalReducer(state = initialState, action) {
@@ -9,5 +9,6 @@ export function generalReducer(state = initialState, action) {
   }
   if (action.type === "getDataFromApi") {
     return { ...state, unicorns: action.unicorns };
-  } else return state;
+  }
+  return state;
 }
