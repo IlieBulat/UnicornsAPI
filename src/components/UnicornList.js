@@ -17,7 +17,13 @@ const UnicornList = ({ data }) => {
       </td>
       <td>
         <button>Edit</button>
-        <button onClick={() => deleteData(data._id)}>Delete</button>
+        <button
+          onClick={() => {
+            deleteData(data._id);
+          }}
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );

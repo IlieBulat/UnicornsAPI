@@ -4,12 +4,17 @@ import "./App.css";
 import Content from "./components/Content";
 import DataInput from "./components/input/DataInput";
 
+import { Provider } from "react-redux";
+import store from "./components/store/store";
+
 function App() {
   return (
-    <div className="App">
-      <DataInput />
-      <Content />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <DataInput />
+        <Content />
+      </div>
+    </Provider>
   );
 }
 
