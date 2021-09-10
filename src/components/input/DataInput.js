@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./input.scss";
 
-import { postData } from "../../apiControl/apiControl";
+import { postUnicorn } from "../../store/reducers/actions";
+import { useDispatch } from "react-redux";
 
 const pattern = new RegExp(/^[a-zA-Z]+$/);
 
 const DataInput = () => {
+  const dispatch = useDispatch();
+
   const [newUni, setNewUni] = useState({
     name: "",
     colour: "",
@@ -98,8 +101,8 @@ const DataInput = () => {
         <button
           disabled={buttonState}
           onClick={() => {
-            postData(newUni);
-            // changeTrig(!test);
+            // postData(newUni);
+            dispatch(postUnicorn(newUni));
           }}
           className={buttonState ? "wrongInput" : "corectInput"}
         >

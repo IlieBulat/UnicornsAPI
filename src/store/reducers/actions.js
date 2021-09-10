@@ -1,15 +1,9 @@
 import axios from "axios";
 
-const key = "ce690e6aa5d244ce95eb9251b67f6725";
+const key = "d506e45973404dedad6e5e528992b7c1";
 const url = "https://crudcrud.com/api/";
 const link = url + key + "/unicorns/";
 
-export function triggerChange(val) {
-  return {
-    type: "trigger",
-    trigger: val,
-  };
-}
 export function updateUsers(data) {
   return {
     type: "getDataFromApi",
@@ -26,7 +20,7 @@ export const apiCall = () => {
         dispatch(updateUsers(data));
       })
       .catch((error) => {
-        console.log("ERROR:" + error.message);
+        console.log("Trying to get data from API, Error:" + error.message);
       });
   };
 };
@@ -38,6 +32,17 @@ export const deleteUnicorn = (id) => {
       .then(() => dispatch(apiCall()))
       .catch((error) => {
         console.error("Trying to delete a Unicorn, Error:", error);
+      });
+  };
+};
+
+export const postUnicorn = (data) => {
+  return (dispatch) => {
+    axios
+      .post(link, data)
+      .then(() => dispatch(apiCall()))
+      .catch((error) => {
+        console.error("Trying to POST a new unicorn, Error:", error);
       });
   };
 };

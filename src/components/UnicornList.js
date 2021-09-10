@@ -1,8 +1,6 @@
 import React from "react";
 import "./styles.scss";
 
-import { deleteData } from "../apiControl/apiControl";
-
 import { deleteUnicorn } from "../store/reducers/actions";
 import { useDispatch } from "react-redux";
 
@@ -23,7 +21,6 @@ const UnicornList = ({ data }) => {
         <button>Edit</button>
         <button
           onClick={() => {
-            // deleteData(data._id);
             dispatch(deleteUnicorn(data._id));
           }}
         >

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import UnicornList from "./UnicornList";
 import "./styles.scss";
-
-import getData from "../apiControl/apiControl.js";
 
 import { useDispatch, useSelector } from "react-redux";
 import { apiCall } from "../store/reducers/actions";
@@ -16,7 +14,7 @@ const Content = () => {
   });
   useEffect(() => {
     dispatch(apiCall());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

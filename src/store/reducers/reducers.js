@@ -1,6 +1,8 @@
 const initialState = {
   trigger: true,
-  unicorns: [{ name: "Loading...", age: "Loading...", colour: "Loading..." }],
+  unicorns: [
+    { _id: "1", name: "Loading...", age: "Loading...", colour: "Loading..." },
+  ],
 };
 
 export function generalReducer(state = initialState, action) {
