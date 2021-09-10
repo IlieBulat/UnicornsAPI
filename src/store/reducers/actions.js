@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const key = "df8eb0b9afe9404985dd82b013044603";
+const key = "ce690e6aa5d244ce95eb9251b67f6725";
 const url = "https://crudcrud.com/api/";
 const link = url + key + "/unicorns/";
 
@@ -27,6 +27,17 @@ export const apiCall = () => {
       })
       .catch((error) => {
         console.log("ERROR:" + error.message);
+      });
+  };
+};
+
+export const deleteUnicorn = (id) => {
+  return (dispatch) => {
+    axios
+      .delete(link + id)
+      .then(() => dispatch(apiCall()))
+      .catch((error) => {
+        console.error("Trying to delete a Unicorn, Error:", error);
       });
   };
 };

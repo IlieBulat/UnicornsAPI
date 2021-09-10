@@ -1,16 +1,16 @@
 import axios from "axios";
 
-const key = "df8eb0b9afe9404985dd82b013044603";
+const key = "ce690e6aa5d244ce95eb9251b67f6725";
 const url = "https://crudcrud.com/api/";
 const link = url + key + "/unicorns/";
 
-const getData = () => {
-  const unicornsData = axios.get(link);
-  return unicornsData.data;
-  // return fetch(link).then((response) => {
-  //   return response.json();
-  // });
-};
+// const getData = () => {
+//   const unicornsData = axios.get(link);
+//   return unicornsData.data;
+// return fetch(link).then((response) => {
+//   return response.json();
+// });
+// };
 
 export const postData = (data) => {
   fetch(link, {
@@ -29,17 +29,17 @@ export const postData = (data) => {
     });
 };
 
-export const deleteData = (id) => {
-  fetch(link + id, {
-    method: "DELETE",
-  })
-    .then((res) => res.text())
-    .catch((error) => {
-      console.error("Trying to delete a Unicorn, Error:", error);
-    });
-};
+// export const deleteData = (id) => {
+//   fetch(link + id, {
+//     method: "DELETE",
+//   })
+//     .then((res) => res.text())
+//     .catch((error) => {
+//       console.error("Trying to delete a Unicorn, Error:", error);
+//     });
+// };
 
 export const editData = () => {
   console.log("EDIT");
 };
-export default getData;
+// export default getData;

@@ -5,7 +5,7 @@ import "./styles.scss";
 import getData from "../apiControl/apiControl.js";
 
 import { useDispatch, useSelector } from "react-redux";
-import { apiCall, triggerChange } from "../store/reducers/actions";
+import { apiCall } from "../store/reducers/actions";
 
 const Content = () => {
   const dispatch = useDispatch();
