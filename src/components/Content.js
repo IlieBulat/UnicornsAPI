@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import UnicornList from "./UnicornList";
+import UnicornItem from "./UnicornItem";
 import "./styles.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { apiCall } from "../store/reducers/actions";
+import { apiCall } from "../store/actions";
 
 const Content = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const Content = () => {
         </thead>
         <tbody>
           {data.map((unicorn) => {
-            return <UnicornList data={unicorn} key={unicorn._id} />;
+            return <UnicornItem data={unicorn} key={unicorn._id} />;
           })}
         </tbody>
       </table>

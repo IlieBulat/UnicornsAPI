@@ -1,20 +1,24 @@
-.box {
-  margin: 20px;
-  border: 1px solid #4caf50;
-  display: flex;
-  justify-content: space-around;
-  .uniName {
-    font-weight: bold;
-    font-size: 25px;
-    flex-grow: 7;
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  tr {
+    border-bottom: 2px solid black;
   }
-  .uniAge {
-    font-size: 20px;
-    flex-grow: 2;
+  td {
+    word-wrap: break-word;
   }
-  .uniColour {
-    flex-grow: 1;
-  }
+}
+
+.uniName {
+  font-weight: bold;
+  // font-size: 25px;
+  flex-grow: 7;
+}
+.uniAge {
+  flex-grow: 2;
+}
+.uniColour {
+  flex-grow: 1;
 }
 
 .contentTable {
