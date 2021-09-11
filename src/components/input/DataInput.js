@@ -42,13 +42,9 @@ const DataInput = () => {
           Name:
           <input
             className={nameCheck(newUni.name) ? "corect" : "wrong"}
-            type="text"
-            label="Name"
-            variant="outlined"
             onChange={(text) =>
               setNewUni({ ...newUni, name: text.target.value })
             }
-            required
           />
         </div>
         <div>
@@ -56,12 +52,9 @@ const DataInput = () => {
           <input
             className={ageCheck(newUni.age) ? "corect" : "wrong"}
             type="number"
-            label="Age"
-            variant="outlined"
             onChange={(text) =>
               setNewUni({ ...newUni, age: text.target.value })
             }
-            required
           />
         </div>
         <div>
@@ -71,9 +64,6 @@ const DataInput = () => {
               setNewUni({ ...newUni, colour: text.target.value })
             }
             className={colorCheck(newUni.colour) ? "corect" : "wrong"}
-            label="Color"
-            variant="outlined"
-            required
           />
         </div>
         <button

@@ -1,29 +1,75 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 import { deleteUnicorn, editUnicorn } from "../store/actions";
 import { useDispatch } from "react-redux";
 
+import { nameCheck, ageCheck, colorCheck } from "../dataValidation/validator";
+
 const UnicornItem = ({ data }) => {
-  const [editActivator, setEditActivator] = useState(false);
-  const [editedUnicorn, setEditedUnicorn] = useState(data);
   const dispatch = useDispatch();
 
-  // dispatch(editUnicorn(data, data._id)) POST NEW DATA
+  const [editActivator, setEditActivator] = useState(false);
+
+  const [newUni, setNewUni] = useState(data);
+
+  const [valid, setValid] = useState({
+    name: false,
+    age: false,
+    colour: false,
+  });
+
+  const buttonState = Object.values(valid).some((element) => element === false);
+
+  useEffect(() => {
+    setValid({
+      name: nameCheck(newUni.name),
+      age: ageCheck(newUni.age),
+      colour: colorCheck(newUni.colour),
+    });
+  }, [newUni]);
+
   if (editActivator) {
     return (
       <tr>
         <td>
-          <input defaultValue={data.name} className="uniName" />
+          <input
+            defaultValue={data.name}
+            className={nameCheck(newUni.name) ? "corect" : "wrong"}
+            onChange={(text) =>
+              setNewUni({ ...newUni, name: text.target.value })
+            }
+          />
         </td>
         <td>
-          <input defaultValue={data.age} className="uniAge" />
+          <input
+            type="number"
+            defaultValue={data.age}
+            className={ageCheck(newUni.age) ? "corect" : "wrong"}
+            onChange={(text) =>
+              setNewUni({ ...newUni, age: text.target.value })
+            }
+          />
         </td>
         <td>
-          <input defaultValue={data.colour} className="uniColour" />
+          <input
+            defaultValue={data.colour}
+            className={colorCheck(newUni.colour) ? "corect" : "wrong"}
+            onChange={(text) =>
+              setNewUni({ ...newUni, colour: text.target.value })
+            }
+          />
         </td>
         <td>
-          <button onClick={() => setEditActivator(!editActivator)}>Save</button>
+          <button
+            disabled={buttonState}
+            onClick={() => {
+              setEditActivator(!editActivator);
+              dispatch(editUnicorn(newUni, data._id));
+            }}
+          >
+            Save
+          </button>
           <button
             onClick={() => {
               setEditActivator(!editActivator);

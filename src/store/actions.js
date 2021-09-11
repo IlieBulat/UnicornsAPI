@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const key = "533cf8c2ce4541b88c886d1f9dffa07b";
+const key = "43fd0eed529d40d58bfdd28a5fa35d96";
 const url = "https://crudcrud.com/api/";
 const link = url + key + "/unicorns/";
 
@@ -34,7 +34,6 @@ export const postUnicorn = (data) => {
 
 export const editUnicorn = (data, id) => {
   delete data._id;
-  data.colour = "green";
   return (dispatch) => {
     axios.put(link + id, data).then(() => dispatch(apiCall()));
   };

@@ -1,4 +1,4 @@
-const pattern = new RegExp(/^[a-zA-Z]+$/);
+const pattern = new RegExp(/^[a-zA-Z_ ]+$/);
 
 export const nameCheck = (name) => {
   let nameResult = pattern.test(name);
@@ -10,10 +10,10 @@ export const nameCheck = (name) => {
 };
 
 export const ageCheck = (age) => {
-  if (age < 0 || age === "") {
-    return false;
-  } else {
+  if (parseInt(age) >= 0) {
     return true;
+  } else {
+    return false;
   }
 };
 

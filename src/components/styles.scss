@@ -8,19 +8,6 @@ table {
     word-wrap: break-word;
   }
 }
-
-.uniName {
-  font-weight: bold;
-  // font-size: 25px;
-  flex-grow: 7;
-}
-.uniAge {
-  flex-grow: 2;
-}
-.uniColour {
-  flex-grow: 1;
-}
-
 .contentTable {
   width: 95%;
   margin-left: auto;
@@ -29,4 +16,11 @@ table {
   .contentTitles {
     font-weight: bold;
   }
+}
+
+.corect {
+  color: green;
+}
+.wrong {
+  color: red;
 }
