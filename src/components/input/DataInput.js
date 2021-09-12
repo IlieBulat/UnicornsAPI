@@ -13,7 +13,7 @@ import {
 const DataInput = () => {
   const dispatch = useDispatch();
 
-  const [newUni, setNewUni] = useState({
+  const [newUnicorn, setNewUnicorn] = useState({
     name: "",
     colour: "",
     age: "",
@@ -29,11 +29,11 @@ const DataInput = () => {
 
   useEffect(() => {
     setValid({
-      name: nameCheck(newUni.name),
-      age: ageCheck(newUni.age),
-      colour: colorCheck(newUni.colour),
+      name: nameCheck(newUnicorn.name),
+      age: ageCheck(newUnicorn.age),
+      colour: colorCheck(newUnicorn.colour),
     });
-  }, [newUni]);
+  }, [newUnicorn]);
 
   return (
     <div className="input">
@@ -41,35 +41,43 @@ const DataInput = () => {
         <div>
           Name:
           <input
-            className={nameCheck(newUni.name) ? "corect" : "wrong"}
+            value={newUnicorn.name}
+            className={nameCheck(newUnicorn.name) ? "corect" : "wrong"}
             onChange={(text) =>
-              setNewUni({ ...newUni, name: text.target.value })
+              setNewUnicorn({ ...newUnicorn, name: text.target.value })
             }
           />
         </div>
         <div>
           Age:
           <input
-            className={ageCheck(newUni.age) ? "corect" : "wrong"}
+            value={newUnicorn.age}
+            className={ageCheck(newUnicorn.age) ? "corect" : "wrong"}
             type="number"
             onChange={(text) =>
-              setNewUni({ ...newUni, age: text.target.value })
+              setNewUnicorn({ ...newUnicorn, age: text.target.value })
             }
           />
         </div>
         <div>
           Color:
           <input
+            value={newUnicorn.colour}
             onChange={(text) =>
-              setNewUni({ ...newUni, colour: text.target.value })
+              setNewUnicorn({ ...newUnicorn, colour: text.target.value })
             }
-            className={colorCheck(newUni.colour) ? "corect" : "wrong"}
+            className={colorCheck(newUnicorn.colour) ? "corect" : "wrong"}
           />
         </div>
         <button
           disabled={buttonState}
           onClick={() => {
-            dispatch(postUnicorn(newUni));
+            dispatch(postUnicorn(newUnicorn));
+            setNewUnicorn({
+              name: "",
+              colour: "",
+              age: "",
+            });
           }}
           className={buttonState ? "wrongInput" : "corectInput"}
         >

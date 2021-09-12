@@ -15,6 +15,7 @@ table {
   background-color: rgb(63, 63, 63);
   .contentTitles {
     font-weight: bold;
+    text-decoration: underline;
   }
 }
 
@@ -23,4 +24,12 @@ table {
 }
 .wrong {
   color: red;
+}
+
+.deleteButton {
+  cursor: pointer;
+  float: right;
+  color: red;
+  border: none;
+  background: none;
 }

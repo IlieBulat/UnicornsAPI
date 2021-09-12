@@ -98,8 +98,9 @@ const UnicornItem = ({ data }) => {
             onClick={() => {
               dispatch(deleteUnicorn(data._id));
             }}
+            className="deleteButton"
           >
-            Delete
+            &#9932;
           </button>
         </td>
       </tr>

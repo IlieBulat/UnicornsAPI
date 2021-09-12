@@ -8,10 +8,10 @@ import { apiCall } from "../store/actions";
 const Content = () => {
   const dispatch = useDispatch();
 
-  //Data Get
   const data = useSelector((state) => {
     return state.generalReducer.unicorns;
   });
+
   useEffect(() => {
     dispatch(apiCall());
   }, [dispatch]);
