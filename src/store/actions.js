@@ -1,40 +1,71 @@
-import axios from "axios";
-
-const key = "29084f67b9aa4e3ab774b1c249490b96";
-const url = "https://crudcrud.com/api/";
-const link = url + key + "/unicorns/";
-
-export function updateUsers(data) {
+export const updateUnicorns = () => {
   return {
     type: "getDataFromApi",
+  };
+};
+export const updateUnicornsSuccess = (data) => {
+  return {
+    type: "getDataFromApiSuccess",
     unicorns: data,
   };
-}
-
-export const apiCall = () => {
-  return (dispatch) => {
-    axios.get(link).then((response) => {
-      const data = response.data;
-      dispatch(updateUsers(data));
-    });
+};
+export const updateUnicornsFail = (response) => {
+  return {
+    type: "getDataFromApiFail",
+    error: response,
   };
 };
 
-export const deleteUnicorn = (id) => {
-  return (dispatch) => {
-    axios.delete(link + id).then(() => dispatch(apiCall()));
+export const postUnicorn = () => {
+  return {
+    type: "postData",
+  };
+};
+export const postUnicornSuccess = (data) => {
+  return {
+    type: "postDataSuccess",
+    cargo: data,
+  };
+};
+export const postUnicornFail = (response) => {
+  return {
+    type: "postDataFail",
+    error: response,
   };
 };
 
-export const postUnicorn = (data) => {
-  return (dispatch) => {
-    axios.post(link, data).then(() => dispatch(apiCall()));
+export const setUnicorn = () => {
+  return {
+    type: "setData",
+  };
+};
+export const setUnicornSuccess = (data) => {
+  return {
+    type: "setDataSuccess",
+    cargo: data,
+  };
+};
+export const setUnicornFail = (response) => {
+  return {
+    type: "setDataFail",
+    error: response,
   };
 };
 
-export const editUnicorn = (data, id) => {
-  delete data._id;
-  return (dispatch) => {
-    axios.put(link + id, data).then(() => dispatch(apiCall()));
+export const deleteUnicorn = () => {
+  return {
+    type: "deleteDataSuccess",
+  };
+};
+export const deleteUnicornSuccess = (id) => {
+  return {
+    type: "deleteDataSuccess",
+    cargo: id,
+  };
+};
+export const deleteUnicornFail = (response) => {
+  return {
+    type: "deleteDataFail",
+    error: response,
   };
 };

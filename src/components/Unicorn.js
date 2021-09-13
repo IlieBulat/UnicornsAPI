@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-
-import { deleteUnicorn, editUnicorn } from "../store/actions";
+import { apiDeleteUnicorn, apiEditUnicorn } from "../store/thunks";
 import { useDispatch } from "react-redux";
 
 import { nameCheck, ageCheck, colorCheck } from "../dataValidation/validator";
 
-const UnicornItem = ({ data }) => {
+const Unicorn = ({ data }) => {
   const dispatch = useDispatch();
 
-  const [editActivator, setEditActivator] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const [newUni, setNewUni] = useState(data);
 
@@ -29,7 +28,7 @@ const UnicornItem = ({ data }) => {
     });
   }, [newUni]);
 
-  if (editActivator) {
+  if (isEditMode) {
     return (
       <tr>
         <td>
@@ -64,15 +63,15 @@ const UnicornItem = ({ data }) => {
           <button
             disabled={buttonState}
             onClick={() => {
-              setEditActivator(!editActivator);
-              dispatch(editUnicorn(newUni, data._id));
+              setIsEditMode(!isEditMode);
+              dispatch(apiEditUnicorn(newUni, data._id));
             }}
           >
             Save
           </button>
           <button
             onClick={() => {
-              setEditActivator(!editActivator);
+              setIsEditMode(!isEditMode);
             }}
           >
             Cancel
@@ -93,10 +92,10 @@ const UnicornItem = ({ data }) => {
           <div className="uniColour">{data.colour}</div>
         </td>
         <td>
-          <button onClick={() => setEditActivator(!editActivator)}>Edit</button>
+          <button onClick={() => setIsEditMode(!isEditMode)}>Edit</button>
           <button
             onClick={() => {
-              dispatch(deleteUnicorn(data._id));
+              dispatch(apiDeleteUnicorn(data._id));
             }}
             className="deleteButton"
           >
@@ -108,4 +107,4 @@ const UnicornItem = ({ data }) => {
   }
 };
 
-export default UnicornItem;
+export default Unicorn;

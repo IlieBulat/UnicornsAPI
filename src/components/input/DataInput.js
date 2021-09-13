@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./input.scss";
 
-import { postUnicorn } from "../../store/actions";
+import { apiPostUnicorn } from "../../store/thunks";
 import { useDispatch } from "react-redux";
 
 import {
@@ -72,7 +72,7 @@ const DataInput = () => {
         <button
           disabled={buttonState}
           onClick={() => {
-            dispatch(postUnicorn(newUnicorn));
+            dispatch(apiPostUnicorn(newUnicorn));
             setNewUnicorn({
               name: "",
               colour: "",

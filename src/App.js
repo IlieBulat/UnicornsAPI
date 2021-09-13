@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./App.css";
+import "./App.scss";
 import Content from "./components/Content";
 import DataInput from "./components/input/DataInput";
 
