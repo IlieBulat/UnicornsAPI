@@ -1,33 +1,56 @@
-import React, { useEffect, useState } from "react";
-import UnicornList from "./UnicornList";
+import React, { useEffect } from "react";
+import Unicorn from "./Unicorn";
 import "./styles.scss";
 
+import { useDispatch, useSelector } from "react-redux";
+import { apiGetData } from "../store/thunks";
+
+// import bred from "../store/thunks.test";
+
 const Content = () => {
-  const [unicorns, setUnicorns] = useState([]);
+  const dispatch = useDispatch();
+
+  const data = useSelector((state) => {
+    return state.allReducers.unicorns;
+  });
+  const errorMessage = useSelector((state) => {
+    return state.allReducers.error;
+  });
+  const loadingState = useSelector((state) => {
+    return state.allReducers.isLoading;
+  });
 
   useEffect(() => {
-    fetch("https://crudcrud.com/api/d3f0a69747e6453d8422fa226bfe2ba0/unicorns")
-      .then((response) => response.json())
-      .then((data) => setUnicorns(data))
-      .catch((error) => {
-        console.error("Trying to get the unicorns from API, Error:", error);
-      });
-  }, []);
+    dispatch(apiGetData());
+    // bred();
+  }, [dispatch]);
 
+  if (loadingState) {
+    return (
+      <div className="spinner">
+        <div className="bounce1"></div>
+        <div className="bounce2"></div>
+        <div className="bounce3"></div>
+      </div>
+    );
+  }
   return (
     <div>
+      <h2 className="wrong">{errorMessage}</h2>
       <table className="contentTable">
-        <tbody>
+        <thead>
           <tr className="contentTitles">
             <td>Name</td>
             <td>Age</td>
             <td>Color</td>
             <td>Options</td>
           </tr>
+        </thead>
+        <tbody>
+          {data?.map((unicorn) => {
+            return <Unicorn data={unicorn} key={unicorn._id} />;
+          })}
         </tbody>
-        {unicorns.map((uni) => {
-          return <UnicornList data={uni} key={uni._id} />;
-        })}
       </table>
     </div>
   );

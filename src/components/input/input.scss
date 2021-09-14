@@ -7,18 +7,23 @@
     justify-content: space-around;
     align-items: center;
 
-    .Input__ {
-      color: white !important;
+    .corect {
+      color: green;
     }
-
-    .InputAfter__ {
-      color: white !important;
+    .wrong {
+      color: red;
     }
-  }
-  .inputButton {
-    width: 75px;
-    background: rgb(227, 255, 229);
-    color: rgb(0, 216, 0);
-    font-weight: bold;
+    .wrongInput {
+      width: 100px;
+      background: rgba(255, 255, 255, 0.288);
+      color: rgba(255, 0, 0, 0.568);
+      font-weight: bold;
+    }
+    .corectInput {
+      width: 100px;
+      background: rgba(0, 226, 15, 0.329);
+      color: rgb(0, 255, 0);
+      font-weight: bold;
+    }
   }
 }
