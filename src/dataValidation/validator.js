@@ -13,16 +13,8 @@ export const ageCheck = (age) => {
   return parseInt(age) >= 0;
 };
 
-export const isColor = (strColor) => {
-  const cssColors = new Option().style;
-  cssColors.color = strColor;
-  return cssColors.color !== "";
-};
-
 export const colorCheck = (color) => {
-  if (!isColor(color)) {
-    return false;
-  } else {
-    return true;
-  }
+  const cssColors = new Option().style;
+  cssColors.color = color;
+  return cssColors.color !== "";
 };

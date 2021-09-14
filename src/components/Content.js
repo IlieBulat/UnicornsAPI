@@ -5,6 +5,8 @@ import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { apiGetData } from "../store/thunks";
 
+// import bred from "../store/thunks.test";
+
 const Content = () => {
   const dispatch = useDispatch();
 
@@ -20,6 +22,7 @@ const Content = () => {
 
   useEffect(() => {
     dispatch(apiGetData());
+    // bred();
   }, [dispatch]);
 
   if (loadingState) {
