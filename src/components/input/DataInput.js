@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./input.scss";
 
 import { apiPostUnicorn } from "../../store/thunks";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   nameCheck,
@@ -25,7 +25,12 @@ const DataInput = () => {
     colour: false,
   });
 
-  const buttonState = Object.values(valid).some((element) => element === false);
+  const errorMessage = useSelector((state) => {
+    return state.allReducers.error;
+  });
+  const isError = errorMessage.length > 0;
+  const buttonState =
+    Object.values(valid).some((element) => element === false) || isError;
 
   useEffect(() => {
     setValid({

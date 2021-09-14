@@ -10,11 +10,7 @@ export const nameCheck = (name) => {
 };
 
 export const ageCheck = (age) => {
-  if (parseInt(age) >= 0) {
-    return true;
-  } else {
-    return false;
-  }
+  return parseInt(age) >= 0;
 };
 
 export const isColor = (strColor) => {

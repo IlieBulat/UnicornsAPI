@@ -14,7 +14,7 @@ import {
   postUnicornSuccess,
 } from "./actions";
 
-const key = "3b0fc981a9a34153af859fb7b82d03ca";
+const key = "6e32cd0e17514a77b93fa064fe24fb71";
 const url = "https://crudcrud.com/api/";
 const link = url + key + "/unicorns/";
 
@@ -39,11 +39,9 @@ export const apiDeleteUnicorn = (id) => (dispatch) => {
   return axios
     .delete(link + id)
     .then(() => dispatch(deleteUnicornSuccess(id)))
-    .catch((errorMessage) =>
+    .catch((error) =>
       dispatch(
-        deleteUnicornFail(
-          errorMessage.message + " - Failed to delete the Unicorn"
-        )
+        deleteUnicornFail(error.message + " - Failed to delete the Unicorn")
       )
     );
 };
@@ -53,22 +51,22 @@ export const apiPostUnicorn = (data) => (dispatch) => {
   return axios
     .post(link, data)
     .then(() => dispatch(postUnicornSuccess({ ...data, _id: Math.random(10) })))
-    .catch((errorMessage) =>
-      dispatch(
-        postUnicornFail(errorMessage.message + " - Failed to add the Unicorn")
-      )
+    .catch((error) =>
+      dispatch(postUnicornFail(error.message + " - Failed to add the Unicorn"))
     );
 };
 
-export const apiEditUnicorn = (data, id) => (dispatch) => {
-  dispatch(setUnicorn());
-  delete data._id;
-  return axios
-    .put(link + id, data)
-    .then(() => dispatch(setUnicornSuccess({ ...data, _id: id })))
-    .catch((errorMessage) =>
-      dispatch(
-        setUnicornFail(errorMessage.message + " - Failed to edit the Unicorn")
-      )
-    );
-};
+export const apiEditUnicorn =
+  ({ name, colour, age }, id) =>
+  (dispatch) => {
+    dispatch(setUnicorn());
+    const data = { name, colour, age };
+    return axios
+      .put(link + id, data)
+      .then(() => dispatch(setUnicornSuccess({ ...data, _id: id })))
+      .catch((error) =>
+        dispatch(
+          setUnicornFail(error.message + " - Failed to edit the Unicorn")
+        )
+      );
+  };

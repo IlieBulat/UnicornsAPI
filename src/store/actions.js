@@ -1,71 +1,71 @@
 export const updateUnicorns = () => {
   return {
-    type: "getDataFromApi",
+    type: "GET_DATA",
   };
 };
 export const updateUnicornsSuccess = (data) => {
   return {
-    type: "getDataFromApiSuccess",
+    type: "GET_DATA_SUCCESS",
     unicorns: data,
   };
 };
 export const updateUnicornsFail = (response) => {
   return {
-    type: "getDataFromApiFail",
+    type: "GET_DATA_FAIL",
     error: response,
   };
 };
 
 export const postUnicorn = () => {
   return {
-    type: "postData",
+    type: "POST_DATA",
   };
 };
 export const postUnicornSuccess = (data) => {
   return {
-    type: "postDataSuccess",
+    type: "POST_DATA_SUCCESS",
     cargo: data,
   };
 };
 export const postUnicornFail = (response) => {
   return {
-    type: "postDataFail",
+    type: "POST_DATA_FAIL",
     error: response,
   };
 };
 
 export const setUnicorn = () => {
   return {
-    type: "setData",
+    type: "SET_DATA",
   };
 };
 export const setUnicornSuccess = (data) => {
   return {
-    type: "setDataSuccess",
+    type: "SET_DATA_SUCCESS",
     cargo: data,
   };
 };
 export const setUnicornFail = (response) => {
   return {
-    type: "setDataFail",
+    type: "SET_DATA_FAIL",
     error: response,
   };
 };
 
 export const deleteUnicorn = () => {
   return {
-    type: "deleteDataSuccess",
+    type: "DELETE_DATA",
   };
 };
 export const deleteUnicornSuccess = (id) => {
   return {
-    type: "deleteDataSuccess",
+    type: "DELETE_DATA_SUCCESS",
     cargo: id,
   };
 };
 export const deleteUnicornFail = (response) => {
   return {
-    type: "deleteDataFail",
+    type: "DELETE_DATA_FAIL",
     error: response,
   };
 };

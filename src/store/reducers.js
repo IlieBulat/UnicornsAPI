@@ -12,56 +12,53 @@ const editDataFunc = (initialData, values) => {
 };
 
 export function allReducers(state = initialState, action) {
-  if (action.type === "getDataFromApi") {
-    return { ...state, isLoading: true };
-  }
-  if (action.type === "getDataFromApiSuccess") {
-    return { ...state, unicorns: action.unicorns, isLoading: false };
-  }
-  if (action.type === "getDataFromApiFail") {
-    return { ...state, error: action.error, isLoading: false };
-  }
+  switch (action.type) {
+    case "GET_DATA":
+      return { ...state, isLoading: true };
+    case "GET_DATA_SUCCESS":
+      return {
+        ...state,
+        unicorns: action.unicorns,
+        isLoading: false,
+        error: "",
+      };
+    case "GET_DATA_FAIL":
+      return { ...state, error: action.error, isLoading: false };
 
-  if (action.type === "postData") {
-    return { ...state, isLoading: true };
-  }
-  if (action.type === "postDataSuccess") {
-    return {
-      ...state,
-      unicorns: [...state.unicorns, action.cargo],
-      isLoading: false,
-    };
-  }
-  if (action.type === "postDataFail") {
-    return { ...state, error: action.error, isLoading: false };
-  }
+    case "POST_DATA":
+      return { ...state, isLoading: true };
+    case "POST_DATA_SUCCESS":
+      return {
+        ...state,
+        unicorns: [...state.unicorns, action.cargo],
+        isLoading: false,
+      };
+    case "POST_DATA_FAIL":
+      return { ...state, error: action.error, isLoading: false };
 
-  if (action.type === "setData") {
-    return { ...state, isLoading: true };
-  }
-  if (action.type === "setDataSuccess") {
-    return {
-      ...state,
-      unicorns: editDataFunc(state.unicorns, action.cargo),
-      isLoading: false,
-    };
-  }
-  if (action.type === "setDataFail") {
-    return { ...state, error: action.error, isLoading: false };
-  }
+    case "SET_DATA":
+      return { ...state, isLoading: true };
+    case "SET_DATA_SUCCESS":
+      return {
+        ...state,
+        unicorns: editDataFunc(state.unicorns, action.cargo),
+        isLoading: false,
+      };
+    case "SET_DATA_FAIL":
+      return { ...state, error: action.error, isLoading: false };
 
-  if (action.type === "deleteData") {
-    return { ...state, isLoading: true };
+    case "DELETE_DATA":
+      return { ...state, isLoading: true };
+    case "DELETE_DATA_SUCCESS":
+      return {
+        ...state,
+        unicorns: state.unicorns.filter((uni) => uni._id !== action.cargo),
+        isLoading: false,
+      };
+    case "DELETE_DATA_FAIL":
+      return { ...state, error: action.error, isLoading: false };
+
+    default:
+      return state;
   }
-  if (action.type === "deleteDataSuccess") {
-    return {
-      ...state,
-      unicorns: state.unicorns.filter((uni) => uni._id !== action.cargo),
-      isLoading: false,
-    };
-  }
-  if (action.type === "deleteDataFail") {
-    return { ...state, error: action.error, isLoading: false };
-  }
-  return state;
 }
